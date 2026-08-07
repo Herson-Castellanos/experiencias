@@ -1737,7 +1737,7 @@ img,
 .cid-vrAvQPqBTO .mbr-text,
 .cid-vrAvQPqBTO .text-wrapper {
   color: #475569;
-  text-align: justify;
+  text-align: left;
 }
 .cid-vrAvQPqBTO .mbr-section-title,
 .cid-vrAvQPqBTO .mbr-section-btn {
@@ -1918,5 +1918,11 @@ img,
   color: #0f172a;
 }
 .cid-vrA3aUavhg .mbr-copy {
-  color: #0f172a;
+  color: #475569;
+  text-align: left;
+}
+.cid-vrA3aUavhg .mbr-section-title,
+.cid-vrA3aUavhg .mbr-section-btn,
+.cid-vrA3aUavhg .title-wrapper {
+  color: #334155;
 }
