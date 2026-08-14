@@ -33,7 +33,7 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
   <link rel="preload" href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
-  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css?v=dLHyFK"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css?v=dLHyFK" type="text/css">
+  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css?v=C5j3XR"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css?v=C5j3XR" type="text/css">
 
   
   
@@ -1116,7 +1116,7 @@
                                     <h4 class="mbr-list-title mbr-fonts-style display-4">Sitios de interés</h4>
                                     <ul class="list mbr-fonts-style display-4">
                                         <li class="item-wrap"><a href="https://www.ucc.mx" class="text-primary" target="_blank">Universidad Cristóbal Colón</a></li>
-                                        <li class="item-wrap"><a href="https://www.ucc.mx/ucc_mastery/ensenanza-del-ingles/" class="text-primary" target="_blank">Maestría en Enseñanza del Inglés</a></li><li class="item-wrap"><a href="https://apastyle.apa.org" target="_blank" class="text-primary">APAStyle</a></li>
+                                        <li class="item-wrap"><a href="https://www.ucc.mx/ucc_mastery/ensenanza-del-ingles/" class="text-primary" target="_blank">Maestría en Enseñanza del Inglés<br></a></li><li class="item-wrap"><a href="https://apastyle.apa.org" target="_blank" class="text-primary">APAStyle</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -1125,7 +1125,7 @@
                             <div class="copy-wrap">
                                 <div class="border-wrap"></div>
                                 <p class="mbr-copy mbr-fonts-style visible display-4">
-                                    <a href="https://herson-castellanos.github.io/experiencias/ucc/dava/2026/">Diseño de Ambientes Virtuales de Aprendizaje</a> © 2026 by <a href="https://herson-castellanos.github.io/hacc/" target="_blank">Herson Alfonso Castellanos Celis</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International</a>&nbsp;<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" style="max-width: 4em; max-height: 1em; float: right;" loading="lazy" class="lazyload" data-src="https://herson-castellanos.github.io/experiencias/claes/psicologia_del_aprendizaje/cc_4_0.svg">
+                                    <a href="https://herson-castellanos.github.io/experiencias/ucc/dava/2026/" class="text-primary" target="_blank">Diseño de Ambientes Virtuales de Aprendizaje</a> © 2026 by <a href="https://herson-castellanos.github.io/hacc/" target="_blank">Herson Alfonso Castellanos Celis</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International</a>&nbsp;<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" style="max-width: 4em; max-height: 1em; float: right;" loading="lazy" class="lazyload" data-src="https://herson-castellanos.github.io/experiencias/claes/psicologia_del_aprendizaje/cc_4_0.svg">
                                 </p>
                             </div>
                         </div>
@@ -1150,7 +1150,21 @@
   <script src="assets/theme/js/script.js"></script>
   <script src="assets/formoid.min.js"></script>
   
-  
+  <script>
+    function enviarAltura() {
+        var altura = document.documentElement.scrollHeight;
+        window.parent.postMessage({ iframeHeight: altura }, "*");
+    }
+
+    // Enviar altura al cargar
+    window.addEventListener("load", enviarAltura);
+
+    // Opcional: reenviar si el contenido cambia de tamaño dinámicamente
+    var resizeObserver = new ResizeObserver(function() {
+        enviarAltura();
+    });
+    resizeObserver.observe(document.body);
+</script>
   
   <input name="animation" type="hidden">
   
