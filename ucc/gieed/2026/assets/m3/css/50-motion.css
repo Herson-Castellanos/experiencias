@@ -1,0 +1,151 @@
+/* ==========================================================================
+   50 · Movimiento
+   Curvas y duraciones de Material Design 3 (tokens --md-ease-* y --md-dur-*).
+   La clase .motion en <html> la pone m3.js cuando el movimiento está permitido
+   (preferencia del sistema o ajuste de la persona usuaria en "Preferencias").
+   ========================================================================== */
+
+@keyframes ripple { to { transform: scale(1); } }
+@keyframes ripple-out { to { opacity: 0; } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes panel-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+@keyframes pop-in { from { opacity: 0; transform: translateY(18px) scale(0.94); } to { opacity: 1; transform: none; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes shimmer { to { background-position: -200% 0; } }
+@keyframes toast-in { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: none; } }
+@keyframes float-slow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes blob-drift { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(-18px, 14px) scale(1.06); } }
+@keyframes vt-out { to { opacity: 0; transform: translateY(-8px); } }
+@keyframes vt-in { from { opacity: 0; transform: translateY(18px); } }
+@keyframes check-pop { 0% { transform: scale(0.6); } 60% { transform: scale(1.18); } 100% { transform: scale(1); } }
+
+/* ---- Aparición al entrar en pantalla (scroll reveal) ---- */
+.motion [data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity var(--md-dur-long2) var(--md-ease-emphasized-decel),
+              transform var(--md-dur-long4) var(--md-ease-emphasized-decel);
+  transition-delay: calc(var(--i, 0) * 70ms);
+  will-change: opacity, transform;
+}
+.motion [data-reveal="fade"] { transform: none; }
+.motion [data-reveal="left"] { transform: translateX(-28px); }
+.motion [data-reveal="right"] { transform: translateX(28px); }
+.motion [data-reveal="scale"] { transform: scale(0.94); }
+.motion [data-reveal="none"] { opacity: 1; transform: none; will-change: auto; }
+.motion [data-reveal].in { opacity: 1; transform: none; }
+.motion [data-reveal].in-done { will-change: auto; transition-delay: 0s; }
+
+/* ---- Entrada del héroe al cargar ---- */
+.motion .hero__body > * { animation: rise var(--md-dur-long4) var(--md-ease-emphasized-decel) both; animation-delay: calc(90ms * var(--k, 0) + 120ms); }
+.motion .hero__body > :nth-child(1) { --k: 0; }
+.motion .hero__body > :nth-child(2) { --k: 1; }
+.motion .hero__body > :nth-child(3) { --k: 2; }
+.motion .hero__body > :nth-child(4) { --k: 3; }
+.motion .hero__body > :nth-child(5) { --k: 4; }
+.motion .hero__body > :nth-child(6) { --k: 5; }
+.motion .hero__media { animation: pop-in 800ms var(--md-ease-emphasized-decel) both; animation-delay: 320ms; }
+.motion .hero__media img { animation: float-slow 7s var(--md-ease-standard) 1.2s infinite; }
+.motion .hero::before { animation: blob-drift 14s var(--md-ease-standard) infinite; }
+.motion .hero::after { animation: blob-drift 18s var(--md-ease-standard) infinite reverse; }
+
+/* Chips del héroe: entran en cascada */
+.motion .hero__facts > li { animation: pop-in var(--md-dur-long2) var(--md-ease-emphasized-decel) both; animation-delay: calc(60ms * var(--c, 0) + 460ms); }
+.motion .hero__facts > li:nth-child(1) { --c: 0; }
+.motion .hero__facts > li:nth-child(2) { --c: 1; }
+.motion .hero__facts > li:nth-child(3) { --c: 2; }
+.motion .hero__facts > li:nth-child(4) { --c: 3; }
+.motion .hero__facts > li:nth-child(5) { --c: 4; }
+
+/* ---- Barras: se llenan al aparecer ---- */
+.motion .weights__seg { transform: scaleX(0); transition: transform 900ms var(--md-ease-emphasized); transition-delay: calc(var(--i, 0) * 110ms + 100ms); }
+.motion .weights.in .weights__seg { transform: none; }
+.motion .level__bar > i { transform: scaleX(0); transition: transform 1000ms var(--md-ease-emphasized); transition-delay: calc(var(--i, 0) * 140ms + 250ms); }
+.motion .scale.in .level__bar > i { transform: none; }
+.motion .progress__bar { transition-duration: var(--md-dur-long2); }
+
+/* Navegación: los elementos del cajón entran en cascada al abrir */
+.motion .nav-drawer.is-open .nav-group, .motion .nav-drawer.is-open .nav-drawer__head { animation: rise var(--md-dur-long2) var(--md-ease-emphasized-decel) both; animation-delay: calc(40ms * var(--g, 0) + 80ms); }
+@media (min-width: 1100px) { .motion .nav-drawer.is-open .nav-group, .motion .nav-drawer.is-open .nav-drawer__head { animation: none; } }
+
+/* Contador: dígitos con ligero rebote cuando cambian */
+.motion .cd-unit { transition: transform var(--md-dur-medium3) var(--md-ease-emphasized-decel); }
+.motion .cd-unit.tick { animation: check-pop var(--md-dur-medium3) var(--md-ease-emphasized-decel); }
+
+/* Casilla de paso completada */
+.motion .step.is-done .step__num { animation: check-pop var(--md-dur-medium4) var(--md-ease-emphasized-decel); }
+
+/* Desplazamiento suave */
+.motion { scroll-behavior: smooth; }
+
+/* Resalte breve del destino de un enlace interno */
+.flash-target { animation: flash-target 1.6s var(--md-ease-standard) 1; }
+@keyframes flash-target { 0%, 35% { box-shadow: 0 0 0 4px color-mix(in srgb, var(--md-primary) 38%, transparent); } 100% { box-shadow: 0 0 0 4px transparent; } }
+
+/* ---- Transiciones entre páginas (View Transitions entre documentos) ----
+   Sin efecto si el navegador no las admite. */
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation: vt-out 180ms var(--md-ease-standard-accel) both; }
+::view-transition-new(root) { animation: vt-in 380ms var(--md-ease-emphasized-decel) both; }
+@media (min-width: 1100px) {
+  .nav-drawer { view-transition-name: nav-drawer; }
+}
+.app-bar { view-transition-name: app-bar; }
+::view-transition-group(nav-drawer), ::view-transition-group(app-bar) { animation-duration: 0s; }
+::view-transition-old(nav-drawer), ::view-transition-new(nav-drawer), ::view-transition-old(app-bar), ::view-transition-new(app-bar) { animation: none; mix-blend-mode: normal; }
+
+/* Cambio de tema con círculo que se expande (lo dispara m3.js) */
+::view-transition-old(theme), ::view-transition-new(theme) { animation: none; mix-blend-mode: normal; }
+html.vt-theme::view-transition-old(root) { animation: none; z-index: 1; }
+html.vt-theme::view-transition-new(root) { animation: theme-reveal 620ms var(--md-ease-emphasized) both; z-index: 2; }
+@keyframes theme-reveal { from { clip-path: circle(0 at var(--vt-x, 50%) var(--vt-y, 0%)); } to { clip-path: circle(var(--vt-r, 150vmax) at var(--vt-x, 50%) var(--vt-y, 0%)); } }
+
+/* ---- Movimiento reducido ----
+   Se respeta la preferencia del sistema salvo que la persona active el movimiento en "Preferencias" (data-motion="full"). */
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) *,
+  :root:not([data-motion="full"]) *::before,
+  :root:not([data-motion="full"]) *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0s !important;
+    scroll-behavior: auto !important;
+  }
+  :root:not([data-motion="full"])::view-transition-group(*),
+  :root:not([data-motion="full"])::view-transition-old(*),
+  :root:not([data-motion="full"])::view-transition-new(*) { animation: none !important; }
+}
+:root[data-motion="reduced"] *,
+:root[data-motion="reduced"] *::before,
+:root[data-motion="reduced"] *::after {
+  animation-duration: 0.001ms !important;
+  animation-delay: 0s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  transition-delay: 0s !important;
+  scroll-behavior: auto !important;
+}
+:root[data-motion="reduced"]::view-transition-group(*),
+:root[data-motion="reduced"]::view-transition-old(*),
+:root[data-motion="reduced"]::view-transition-new(*) { animation: none !important; }
+
+/* ---- Impresión ---- */
+@media print {
+  :root { color-scheme: light; --md-surface: #fff; }
+  body { background: #fff; color: #000; font-size: 11pt; }
+  .app { display: block; }
+  .app-bar, .nav-drawer, .nav-primary, .scrim, .fab-top, .section-nav, .toc, .snackbar, .embed-nav, .video__play, .steps-progress .btn, .criteria-summary .btn, .footer__top, .pager { display: none !important; }
+  .app-main { margin: 0 !important; padding: 0 !important; }
+  .page-layout { max-width: none; padding: 0; }
+  .hero, .section--panel, .section--accent, .card, .level, .criteria-group { box-shadow: none !important; border: 1px solid #ccc; background: #fff !important; color: #000 !important; break-inside: avoid; }
+  .accordion__panel { grid-template-rows: 1fr !important; }
+  .accordion__content { opacity: 1 !important; transform: none !important; }
+  [data-reveal] { opacity: 1 !important; transform: none !important; }
+  a { color: #000; text-decoration: underline; }
+  .video { display: none; }
+  .tab-panel[hidden] { display: block !important; }
+  .tabs__list { display: none; }
+}
