@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://herson-castellanos.github.io/experiencias/ucc/dava/2026/sitemap.xml
+Sitemap: https://herson-castellanos.github.io/experiencias/ucc/gieed/2026/sitemap.xml

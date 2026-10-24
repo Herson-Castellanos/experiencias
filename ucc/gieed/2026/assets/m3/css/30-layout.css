@@ -199,8 +199,8 @@
   .app { display: grid; grid-template-columns: var(--drawer-w) minmax(0, 1fr); }
   .nav-drawer {
     position: sticky;
-    top: 0;
     inset: auto;
+    top: 0;
     align-self: start;
     height: 100vh;
     width: auto;

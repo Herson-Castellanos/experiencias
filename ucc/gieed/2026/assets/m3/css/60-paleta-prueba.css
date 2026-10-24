@@ -1,0 +1,140 @@
+/* ==========================================================================
+   60 · Paleta de prueba (solo se enlaza desde index.html)
+   Base: rgb(0, 126, 174) · rgb(101, 101, 102) · rgb(255, 255, 255)
+   Para descartarla: quitar el <link> de index.html. Para adoptarla: pasar estos
+   valores a 00-tokens.css.
+   ========================================================================== */
+
+:root {
+  --pal-azul: rgb(0, 126, 174);
+  --pal-gris: rgb(101, 101, 102);
+
+  --md-primary: rgb(0, 126, 174);
+  --md-on-primary: #ffffff;
+  --md-primary-container: #cdeaf7;
+  --md-on-primary-container: #00283a;
+  --md-secondary: rgb(101, 101, 102);
+  --md-on-secondary: #ffffff;
+  --md-secondary-container: #e4e4e6;
+  --md-on-secondary-container: #1c1c1d;
+  --md-tertiary: #3b7389;
+  --md-on-tertiary: #ffffff;
+  --md-tertiary-container: #d3e7ef;
+  --md-on-tertiary-container: #0a2530;
+  --md-surface: #ffffff;
+  --md-on-surface: #1a1c1d;
+  --md-surface-variant: #e2e8ec;
+  --md-on-surface-variant: #43494d;
+  --md-outline: #71787c;
+  --md-outline-variant: #c3cacf;
+  --md-inverse-surface: #2e3132;
+  --md-inverse-on-surface: #eff1f2;
+  --md-inverse-primary: #80d0f4;
+  --md-surface-dim: #d8dde0;
+  --md-surface-container-lowest: #ffffff;
+  --md-surface-container-low: #f5f9fb;
+  --md-surface-container: #eff4f7;
+  --md-surface-container-high: #e8eef1;
+  --md-surface-container-highest: #e1e8ec;
+
+  /* Degradados derivados de los tres colores */
+  --grad-primario: linear-gradient(135deg, rgb(0, 150, 204) 0%, rgb(0, 126, 174) 55%, rgb(0, 92, 128) 100%);
+  --grad-hero: linear-gradient(135deg, #e3f4fb 0%, #cdeaf7 55%, #dcdde0 100%);
+  --grad-suave: linear-gradient(180deg, #ffffff 0%, #f1f6f9 100%);
+}
+
+:root[data-theme="dark"] {
+  --md-primary: #80d0f4;
+  --md-on-primary: #00344a;
+  --md-primary-container: #004c6b;
+  --md-on-primary-container: #cdeaf7;
+  --md-secondary: #c9c9cb;
+  --md-on-secondary: #313132;
+  --md-secondary-container: #484849;
+  --md-on-secondary-container: #e4e4e6;
+  --md-tertiary: #a3cde0;
+  --md-on-tertiary: #07344a;
+  --md-tertiary-container: #234f63;
+  --md-on-tertiary-container: #d3e7ef;
+  --md-surface: #101415;
+  --md-on-surface: #e0e3e4;
+  --md-surface-variant: #43494d;
+  --md-on-surface-variant: #c3cacf;
+  --md-outline: #8c9397;
+  --md-outline-variant: #43494d;
+  --md-inverse-surface: #e0e3e4;
+  --md-inverse-on-surface: #2e3132;
+  --md-inverse-primary: rgb(0, 126, 174);
+  --md-surface-dim: #101415;
+  --md-surface-container-lowest: #0b0f10;
+  --md-surface-container-low: #181c1e;
+  --md-surface-container: #1c2022;
+  --md-surface-container-high: #272b2d;
+  --md-surface-container-highest: #323638;
+  --grad-primario: linear-gradient(135deg, #a6defa 0%, #80d0f4 55%, #4fb4e0 100%);
+  --grad-hero: linear-gradient(135deg, #00405a 0%, #004c6b 55%, #2f3234 100%);
+  --grad-suave: linear-gradient(180deg, #101415 0%, #181c1e 100%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --md-primary: #80d0f4;
+    --md-on-primary: #00344a;
+    --md-primary-container: #004c6b;
+    --md-on-primary-container: #cdeaf7;
+    --md-secondary: #c9c9cb;
+    --md-on-secondary: #313132;
+    --md-secondary-container: #484849;
+    --md-on-secondary-container: #e4e4e6;
+    --md-tertiary: #a3cde0;
+    --md-on-tertiary: #07344a;
+    --md-tertiary-container: #234f63;
+    --md-on-tertiary-container: #d3e7ef;
+    --md-surface: #101415;
+    --md-on-surface: #e0e3e4;
+    --md-surface-variant: #43494d;
+    --md-on-surface-variant: #c3cacf;
+    --md-outline: #8c9397;
+    --md-outline-variant: #43494d;
+    --md-inverse-surface: #e0e3e4;
+    --md-inverse-on-surface: #2e3132;
+    --md-inverse-primary: rgb(0, 126, 174);
+    --md-surface-dim: #101415;
+    --md-surface-container-lowest: #0b0f10;
+    --md-surface-container-low: #181c1e;
+    --md-surface-container: #1c2022;
+    --md-surface-container-high: #272b2d;
+    --md-surface-container-highest: #323638;
+    --grad-primario: linear-gradient(135deg, #a6defa 0%, #80d0f4 55%, #4fb4e0 100%);
+    --grad-hero: linear-gradient(135deg, #00405a 0%, #004c6b 55%, #2f3234 100%);
+    --grad-suave: linear-gradient(180deg, #101415 0%, #181c1e 100%);
+  }
+}
+
+/* ---- Superficies con degradado ---- */
+.hero { background: var(--grad-hero); }
+.section--panel { background: var(--grad-suave); box-shadow: inset 0 0 0 1px var(--md-outline-variant); }
+.nav-drawer { background: var(--grad-suave); }
+.footer { background: linear-gradient(180deg, var(--md-surface-container) 0%, var(--md-surface-container-high) 100%); }
+
+/* ---- Acentos con degradado ---- */
+.btn--filled { --_bg: var(--grad-primario); }
+.agenda__date { background: var(--grad-primario); }
+.hero__title { color: var(--md-on-primary-container); }
+
+/* ---- Logos de la universidad ---- */
+.app-bar__logo { width: auto; height: 32px; object-fit: contain; }
+.nav-drawer__head .app-bar__logo { width: auto; height: 44px; }
+.footer__logo { display: block; width: 160px; height: auto; margin-bottom: 16px; }
+:root[data-theme="dark"] .footer__logo { background: #fff; padding: 8px 12px; border-radius: var(--md-shape-md); }
+:root[data-theme="dark"] .nav-drawer__head .app-bar__logo, :root[data-theme="dark"] .app-bar__logo { background: #fff; padding: 3px 4px; border-radius: var(--md-shape-sm); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .footer__logo { background: #fff; padding: 8px 12px; border-radius: var(--md-shape-md); }
+  :root:not([data-theme="light"]) .app-bar__logo { background: #fff; padding: 3px 4px; border-radius: var(--md-shape-sm); }
+}
+
+/* ---- Insignia HTML5 (W3C) antes del pie ---- */
+.html5-badge { display: flex; justify-content: center; padding: 8px var(--gutter) 0; }
+.html5-badge a { display: inline-block; border-radius: var(--md-shape-sm); line-height: 0; }
+.html5-badge img { max-width: 100%; height: auto; }
+.is-embedded .html5-badge { display: none; }
