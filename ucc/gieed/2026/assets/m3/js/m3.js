@@ -761,6 +761,12 @@
     };
     const io = new IntersectionObserver((entries) => entries.forEach((en) => { if (en.isIntersecting) { mark(en.target.id); } }), { rootMargin: '-25% 0px -65% 0px' });
     secs.forEach((s) => io.observe(s));
+    /* Al llegar al final de la página, la última sección nunca alcanza la franja del observador: se marca a mano */
+    const last = secs[secs.length - 1];
+    window.addEventListener('scroll', () => {
+      const atEnd = window.innerHeight + (window.pageYOffset || 0) >= document.documentElement.scrollHeight - 8;
+      if (atEnd && last.getBoundingClientRect().top < window.innerHeight) { mark(last.id); }
+    }, { passive: true });
   })();
 
   /* ---------------------------------------------------------------- Enlaces internos hacia contenido plegado */

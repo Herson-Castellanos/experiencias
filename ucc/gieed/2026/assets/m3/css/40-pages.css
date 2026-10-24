@@ -444,3 +444,6 @@ img[data-fade].is-loaded { opacity: 1; }
 .refs { display: grid; gap: 14px; padding: 8px 16px 8px 4px; }
 .refs p { margin: 0; padding-left: 48px; text-indent: -48px; font: 400 0.9375rem/1.55 var(--md-font); color: var(--md-on-surface); }
 .refs a { word-break: break-word; }
+
+/* ---- Botón del paginador bloqueado: sin enlace, atenuado y sin respuesta al puntero ---- */
+.pager__link[aria-disabled="true"] { opacity: 0.38; filter: grayscale(1); pointer-events: none; cursor: not-allowed; }
