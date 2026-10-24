@@ -12,6 +12,9 @@ html {
   scroll-padding-top: calc(var(--app-bar-h) + 16px);
   background: var(--md-surface);
 }
+/* Preferencias › Tamaño del texto: toda la tipografía está en rem, así que escala con la raíz */
+html[data-text="large"] { font-size: 112.5%; }
+html[data-text="xlarge"] { font-size: 125%; }
 
 body {
   margin: 0;

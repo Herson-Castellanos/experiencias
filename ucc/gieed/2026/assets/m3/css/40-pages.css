@@ -438,3 +438,8 @@ img[data-fade].is-loaded { opacity: 1; }
 /* Texto citado largo (contexto) */
 .quote { position: relative; padding: clamp(20px, 3.5vw, 36px); padding-left: clamp(28px, 4vw, 48px); border-radius: var(--md-shape-xl); background: var(--md-surface-container-low); font: 400 1.125rem/1.7 var(--md-font); color: var(--md-on-surface); text-wrap: pretty; }
 .quote::before { content: ""; position: absolute; left: 0; top: 20px; bottom: 20px; width: 5px; border-radius: 0 4px 4px 0; background: var(--md-primary); }
+
+/* ---- Fuentes en formato APA 7: sin numeración, con sangría francesa (0.5 in) ---- */
+.refs { display: grid; gap: 14px; padding: 8px 16px 8px 4px; }
+.refs p { margin: 0; padding-left: 48px; text-indent: -48px; font: 400 0.9375rem/1.55 var(--md-font); color: var(--md-on-surface); }
+.refs a { word-break: break-word; }

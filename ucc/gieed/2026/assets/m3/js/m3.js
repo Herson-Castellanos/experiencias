@@ -147,7 +147,7 @@
   };
   function syncThemeMeta() {
     const dark = effectiveDark();
-    $$('meta[name="theme-color"]').forEach((m) => { m.removeAttribute('media'); m.setAttribute('content', dark ? '#141218' : '#fef7ff'); });
+    $$('meta[name="theme-color"]').forEach((m) => { m.removeAttribute('media'); m.setAttribute('content', dark ? '#101415' : '#ffffff'); });
     $$('[data-theme-toggle]').forEach((b) => {
       b.setAttribute('aria-pressed', dark ? 'true' : 'false');
       b.setAttribute('aria-label', dark ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro');

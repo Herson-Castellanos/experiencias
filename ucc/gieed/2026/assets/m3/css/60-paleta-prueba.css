@@ -138,3 +138,23 @@
 .html5-badge a { display: inline-block; border-radius: var(--md-shape-sm); line-height: 0; }
 .html5-badge img { max-width: 100%; height: auto; }
 .is-embedded .html5-badge { display: none; }
+
+/* ---- Ilustraciones con fondo blanco: se funden con el color de la tarjeta ---- */
+.card--tonal .card__media--contain { background: transparent; }
+.card--tonal .card__media--contain img { mix-blend-mode: multiply; }
+:root[data-theme="dark"] .card--tonal .card__media--contain img { mix-blend-mode: normal; border-radius: var(--md-shape-lg); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .card--tonal .card__media--contain img { mix-blend-mode: normal; border-radius: var(--md-shape-lg); }
+}
+
+/* ---- Licencia CC0: texto e íconos en una sola línea ---- */
+.cc-nowrap { display: inline-flex; align-items: center; white-space: nowrap; gap: 0; }
+.footer__legal .cc-nowrap img { display: inline-block; flex: none; width: 1em; height: 1em; max-width: 1em; max-height: 1em; margin-left: .2em; }
+.footer__legal .cc-nowrap a + img { margin-left: .35em; }
+
+/* ---- Ilustraciones con fondo blanco dentro de recuadros (.figure--pad): se funden con el fondo ---- */
+.figure--pad img { mix-blend-mode: multiply; }
+:root[data-theme="dark"] .figure--pad img { mix-blend-mode: normal; border-radius: var(--md-shape-lg); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .figure--pad img { mix-blend-mode: normal; border-radius: var(--md-shape-lg); }
+}
