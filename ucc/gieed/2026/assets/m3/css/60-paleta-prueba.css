@@ -158,3 +158,7 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .figure--pad img { mix-blend-mode: normal; border-radius: var(--md-shape-lg); }
 }
+
+/* ---- Ilustración del foro de bienvenida (sin fondo): tamaño en el banner ---- */
+/* El ancho real lo manda la columna del banner (30 % del ancho), no max-width: se escala en porcentaje de esa columna. 72 % = 90 % x 80 % del tamaño anterior. */
+.hero--compact .hero__media img[src$="ilu-1760350777132.webp"] { width: 72%; }
