@@ -380,6 +380,7 @@
 .level--1 { --lvl: var(--md-success); }
 .level--2 { --lvl: var(--md-primary); }
 .level--3 { --lvl: var(--md-tertiary); }
+.level--4 { --lvl: var(--md-error); }
 .level__head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .level__name { font: 500 1.25rem/1.3 var(--md-font); }
 .level__pts { margin-left: auto; }
