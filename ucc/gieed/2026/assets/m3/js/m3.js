@@ -200,7 +200,7 @@
     const r = b.getBoundingClientRect();
     setTheme(effectiveDark() ? 'light' : 'dark', { x: r.left + r.width / 2, y: r.top + r.height / 2 });
   }));
-  if (window.matchMedia) { matchMedia('(prefers-color-scheme: dark)').addEventListener('change', syncThemeMeta); }
+  if (window.matchMedia) { const darkMQ = matchMedia('(prefers-color-scheme: dark)'); darkMQ.addEventListener ? darkMQ.addEventListener('change', syncThemeMeta) : darkMQ.addListener && darkMQ.addListener(syncThemeMeta); }
   $$('[data-pref]').forEach((g) => {
     const name = g.getAttribute('data-pref');
     $$('[role="radio"]', g).forEach((b) => b.addEventListener('click', () => {
