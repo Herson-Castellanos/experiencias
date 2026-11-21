@@ -416,6 +416,29 @@
 .form__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
 .form__status { min-height: 0; }
 .form__status:not(:empty) { margin-top: 4px; }
+/* Formulario por pasos (encuesta con matrices) */
+.form-card [hidden] { display: none !important; }
+.fsteps { display: grid; gap: 8px; }
+.fsteps__label { color: var(--md-on-surface-variant); font: 500 0.875rem/1.4 var(--md-font); letter-spacing: 0.1px; }
+.fstep { display: grid; gap: 12px; align-content: start; }
+.fstep__title { margin: 0; color: var(--md-on-surface); font: 500 1.25rem/1.4 var(--md-font); }
+.fstep__title:focus { outline: none; }
+.fstep__lead { margin: 0; color: var(--md-on-surface-variant); font: 400 0.9375rem/1.5 var(--md-font); }
+.matrix { display: grid; border-radius: var(--md-shape-large); overflow: hidden; box-shadow: inset 0 0 0 1px var(--md-outline-variant); }
+.matrix__head { display: none; }
+.matrix__row { display: grid; gap: 2px; padding: 14px 16px; border: 0; }
+.matrix__row:nth-of-type(odd) { background: var(--md-surface-container-low); }
+.matrix__q { margin: 0 0 4px; color: var(--md-on-surface); font: 400 0.9375rem/1.5 var(--md-font); }
+.matrix__row.is-invalid .matrix__q { color: var(--md-error); }
+.matrix__row .choice { min-height: 44px; }
+@media (min-width: 820px) {
+  .matrix__head, .matrix__row { display: grid; grid-template-columns: minmax(0, 2.4fr) repeat(4, minmax(0, 1fr)); align-items: center; gap: 0 8px; }
+  .matrix__head { padding: 14px 16px; border-bottom: 1px solid var(--md-outline-variant); }
+  .matrix__head span { color: var(--md-on-surface); font: 500 0.8125rem/1.35 var(--md-font); text-align: center; }
+  .matrix__q { margin: 0; }
+  .matrix__row .choice { justify-content: center; padding: 4px; }
+  .matrix__row .choice__text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}
 .form__hint { color: var(--md-on-surface-variant); font: 400 0.8125rem/1.5 var(--md-font); }
 
 /* ---- Agradecimiento / cierre ---- */

@@ -657,10 +657,57 @@
         status.scrollIntoView && status.scrollIntoView({ block: 'nearest', behavior: motionOn() ? 'smooth' : 'auto' });
       };
       form.setAttribute('novalidate', '');
+      /* Formulario por pasos: una sección a la vez, con validación al avanzar */
+      const steps = $$('.fstep', form);
+      if (steps.length) {
+        let cur = 0;
+        const bar = $('.fsteps .progress__bar', form), lab = $('.fsteps__label', form);
+        const prev = $('[data-step-prev]', form), next = $('[data-step-next]', form);
+        const go = (i, focus) => {
+          cur = Math.max(0, Math.min(steps.length - 1, i));
+          steps.forEach((s, k) => { s.hidden = k !== cur; });
+          if (bar) { bar.style.width = ((cur + 1) / steps.length * 100) + '%'; }
+          if (lab) { lab.textContent = 'Sección ' + (cur + 1) + ' de ' + steps.length; }
+          if (prev) { prev.hidden = cur === 0; }
+          if (next) { next.hidden = cur === steps.length - 1; }
+          if (submit) { submit.hidden = cur !== steps.length - 1; }
+          if (status) { status.innerHTML = ''; }
+          if (focus) {
+            const t = $('.fstep__title', steps[cur]);
+            const top = $('.fsteps', form);
+            top && top.scrollIntoView({ block: 'start', behavior: motionOn() ? 'smooth' : 'auto' });
+            t && t.focus({ preventScroll: true });
+          }
+          postHeight();
+        };
+        const checkStep = (st) => {
+          let first = null;
+          $$('.field', st).forEach((f) => {
+            const inp = $('.field__input', f);
+            const bad = inp.hasAttribute('required') && !inp.value.trim();
+            f.classList.toggle('is-invalid', bad);
+            if (bad && !first) { first = inp; }
+          });
+          $$('[data-required]', st).forEach((g) => {
+            const ok = $$('input[type="radio"]', g).some((r) => r.checked);
+            g.classList.toggle('is-invalid', !ok);
+            if (!ok && !first) { first = $('input', g); }
+          });
+          return first;
+        };
+        next && next.addEventListener('click', () => {
+          const bad = checkStep(steps[cur]);
+          if (bad) { bad.focus(); say('err', 'Responde todas las preguntas de esta sección para continuar.'); return; }
+          go(cur + 1, true);
+        });
+        prev && prev.addEventListener('click', () => go(cur - 1, true));
+        form.__go = (el) => { const k = typeof el === 'number' ? el : steps.indexOf(el.closest('.fstep')); if (k >= 0) { go(k, false); } };
+        go(0, false);
+      }
       form.addEventListener('input', (e) => {
         const f = e.target.closest('.field');
         if (f) { f.classList.remove('is-invalid'); const s = $('.field__support', f); if (s && s.dataset.err) { s.textContent = s.dataset.hint || ''; delete s.dataset.err; } }
-        const fs = e.target.closest('fieldset[data-required]');
+        const fs = e.target.closest('[data-required]');
         if (fs) { fs.classList.remove('is-invalid'); const er = $('.choice-error', fs); if (er) { er.hidden = true; } }
       });
       form.addEventListener('submit', (e) => {
@@ -677,14 +724,14 @@
           f.classList.toggle('is-invalid', bad);
           if (bad && !first) { first = inp; }
         });
-        $$('fieldset[data-required]', form).forEach((fs) => {
+        $$('[data-required]', form).forEach((fs) => {
           const ok = $$('input[type="radio"]', fs).some((r) => r.checked);
           fs.classList.toggle('is-invalid', !ok);
           const er = $('.choice-error', fs);
           if (er) { er.hidden = ok; }
           if (!ok && !first) { first = $('input', fs); }
         });
-        if (first) { first.focus(); say('err', 'Revisa los campos marcados antes de enviar.'); return; }
+        if (first) { if (form.__go) { form.__go(first); } first.focus(); say('err', 'Revisa los campos marcados antes de enviar.'); return; }
         const data = [];
         $$('[data-field]', form).forEach((n) => {
           const name = n.getAttribute('data-field');
@@ -701,6 +748,7 @@
           .then((t) => { let j; try { j = JSON.parse(t); } catch (err) { throw new Error('json'); } if (j.error) { throw new Error(j.error); } return j; })
           .then(() => {
             form.reset();
+            if (form.__go) { form.__go(0, false); }
             $$('textarea.field__input', form).forEach((ta) => { ta.style.height = ''; });
             say('ok', form.getAttribute('data-ok') || 'Gracias. Tu respuesta se envió correctamente.');
             toast(form.getAttribute('data-ok') || 'Enviado', { anchor: submit });
